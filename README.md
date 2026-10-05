@@ -24,11 +24,16 @@ The browser demo intentionally uses fictional fixture tickets so it can be revie
 const connector = createFreshdeskConnector({
   domain: process.env.FRESHDESK_DOMAIN!,
   apiKey: process.env.FRESHDESK_API_KEY!,
-})
+});
 
-await connector.listTickets({ page: 1, perPage: 30, orderBy: 'updated_at', orderType: 'desc' })
-await connector.getTicket(8421)
-await connector.searchTickets('webhook signature')
+await connector.listTickets({
+  page: 1,
+  perPage: 30,
+  orderBy: "updated_at",
+  orderType: "desc",
+});
+await connector.getTicket(8421);
+await connector.searchTickets("webhook signature");
 ```
 
 `freshdeskMcpManifest` provides an MCP-equivalent tool specification for Agent Studio discovery. `runTool` routes validated tool calls to the connector.
@@ -49,3 +54,5 @@ The client honors `Retry-After` and retries `429`/`5xx` responses with bounded e
 - Freshdesk search is eventually consistent and follows Freshdesk's query semantics.
 - The demo's fictional tickets are not fetched from Freshdesk; this prevents accidental exposure of customer data during review.
 - The connector does not include write operations because support actions should pass through explicit human approval until the merchant's policy is known.
+
+# Made with ❤ by [Pranjal Agarwal](https://github.com/Pranjal360Agarwal).
